@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
-  <HelloWorld />
+  <nav>
+    <RouterLink to="/inventory">Inventory Overview</RouterLink>
+  </nav>
+
+  <main>
+    <RouterView />
+  </main>
 </template>
