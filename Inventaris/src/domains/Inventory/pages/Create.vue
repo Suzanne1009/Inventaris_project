@@ -4,7 +4,7 @@
 import InventoryForm from '../components/InventoryForm.vue';
 import { addProduct } from '../store.ts'; //Haalt de addGrocery functie op uit de store
 
-const product = { id: null, name: '', actualAmount: null, minimumAmount: null };
+const product = { id: 0, name: '', actualAmount: 0, minimumAmount: 0 };
 
 </script>
 

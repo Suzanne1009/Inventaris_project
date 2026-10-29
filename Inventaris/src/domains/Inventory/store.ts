@@ -1,9 +1,9 @@
 import { ref, computed } from 'vue'
 
 //State
-type product =  {id: number, name: string, actualAmount: number, minimumAmount: number}
+export type Product = { id: number, name: string, actualAmount: number, minimumAmount: number}
 
-const products= ref<product[]>([
+const products= ref<Product[]>([
     {id: 1, name: "Pennen", actualAmount: 3, minimumAmount: 5},
     {id: 2, name: "Notitieblokken", actualAmount: 3, minimumAmount: 5},
     {id: 3, name: "Labels", actualAmount: 3, minimumAmount: 5},
@@ -15,11 +15,26 @@ const products= ref<product[]>([
 
 
 //Getters
-export const getAllProducts = computed<product[]>(() => products.value); 
-export const getInventoryById = (id:number) => computed<product | undefined>(() => products.value.find(product => product.id === id));
+export const getAllProducts = computed<Product[]>(() => products.value); 
+export const getProductById = (id:number) => computed<Product | undefined>(() => products.value.find(product => product.id === id));
 export const idCount = ref(Math.max(0, ...getAllProducts.value.map(product => product.id))) //Om het hoogste id nummer uit de lijst te halen
 
 //Actions
-export const addProduct = (product: product) => {
+export const addProduct = (product: Product) => {
   products.value.push({...product, id: ++idCount.value}); //Toevoegen van nieuwe product
 }
+
+export const updateInventory = (product: Product) => {
+  const item = getProductById(product.id);
+
+  if (!item.value) return; //Checken of product bestaat
+
+  item.value.name = product.name;
+  item.value.actualAmount = product.actualAmount;
+  item.value.minimumAmount = product.minimumAmount;
+};
+
+export const belowMinimum = computed<Product[]>(() => {
+  return products.value.filter(product => product.actualAmount < product.minimumAmount)
+})
+

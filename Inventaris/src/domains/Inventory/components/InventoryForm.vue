@@ -2,14 +2,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { Product } from '../store';
 
-const props = defineProps({
-    product: Object,
-})
+const props = defineProps<{
+  product: Product
+}>()
 
-//Voor nieuw product
-const tempProduct = ref({...props.product});
-
+const tempProduct = ref({ ...props.product })
 
 const emit = defineEmits(['submit']);
 
@@ -27,18 +26,17 @@ const emitEvent = () => { //Als je op submit drukt, gebeurt dit
 <template>
     <div>
         <input v-model="tempProduct.name" placeholder="Product">
-        <input v-model="tempProduct.actualAmount" type="number"  min="0" step="1" placeholder="Current Amount">
-        <input v-model="tempProduct.minimumAmount" type="number" placeholder="Minimum amount">
+        <input v-model.number="tempProduct.actualAmount" type="number"  min="0" step="1" placeholder="Current Amount">
+        <input v-model.number="tempProduct.minimumAmount" type="number" placeholder="Minimum amount">
     </div>
     <div>
         <RouterLink :to="`/`"> <!-- Als je op de submit knop drukt, ga je weer naar de overview pagina-->
-            <button @click="emitEvent">Add</button>
+            <button @click="emitEvent">{{ props.product?.id ? 'Change' : 'Add'}}</button> <!--Als product bestaand Id heeft, dan komt er Change te staan, anders Add-->
         </RouterLink>
+
         <RouterLink :to="`/`"> <!-- Als je op de submit knop drukt, ga je weer naar de overview pagina-->
             <button>Cancel</button>
         </RouterLink>
         
     </div>
-
-
 </template>
