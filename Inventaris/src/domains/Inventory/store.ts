@@ -4,11 +4,11 @@ import { ref, computed } from 'vue'
 export type Product = { id: number, name: string, actualAmount: number, minimumAmount: number}
 
 const products= ref<Product[]>([
-    {id: 1, name: "Pennen", actualAmount: 3, minimumAmount: 5},
+    {id: 1, name: "Pennen", actualAmount: 6, minimumAmount: 5},
     {id: 2, name: "Notitieblokken", actualAmount: 3, minimumAmount: 5},
     {id: 3, name: "Labels", actualAmount: 3, minimumAmount: 5},
-    {id: 4, name: "Potloden", actualAmount: 3, minimumAmount: 5},
-    {id: 5, name: "Gummen", actualAmount: 3, minimumAmount: 5},
+    {id: 4, name: "Potloden", actualAmount: 7, minimumAmount: 5},
+    {id: 5, name: "Gummen", actualAmount: 6, minimumAmount: 5},
     {id: 6, name: "Puntenslijpers", actualAmount: 3, minimumAmount: 5},
     {id: 7, name: "Linealen", actualAmount: 3, minimumAmount: 5},
 ])
@@ -21,7 +21,7 @@ export const idCount = ref(Math.max(0, ...getAllProducts.value.map(product => pr
 
 //Actions
 export const addProduct = (product: Product) => {
-  products.value.push({...product, id: ++idCount.value}); //Toevoegen van nieuwe product
+  products.value.push({...product, id: ++idCount.value}); //Toevoegen van nieuw product
 }
 
 export const updateInventory = (product: Product) => {

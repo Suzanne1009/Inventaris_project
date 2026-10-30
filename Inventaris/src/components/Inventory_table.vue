@@ -81,11 +81,12 @@ button {
 a:link {
   text-decoration: none;
   padding: 5%;
+  color: darkcyan;
 
 }
 
 a:visited {
-  color: brown;
+  color: darkcyan;
 
 }
 

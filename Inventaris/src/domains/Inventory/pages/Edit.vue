@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router'
 import InventoryForm from '../components/InventoryForm.vue';
 
-import { updateInventory, getProductById } from '../store.ts'; //Haalt de update en ID functie op uit de store
+import { updateInventory, getProductById } from '../store'; //Haalt de update en ID functie op uit de store
 
 const route = useRoute()
 const productId = computed(() => Number(route.params.id))
