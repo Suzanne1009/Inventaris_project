@@ -4,7 +4,7 @@
 import { ref } from 'vue'
 import type { Product } from '../store';
 
-const props = defineProps<{
+const props = defineProps<{ //Zou naam props nog kunnen veranderen naar duidelijkere naam net zoals in Inventory table
   product: Product
 }>()
 
@@ -30,6 +30,7 @@ const emitEvent = () => { //Als je op submit drukt, gebeurt dit
         <input v-model.number="tempProduct.minimumAmount" type="number" placeholder="Minimum amount">
     </div>
     <div>
+        <!--In emitEvent de redirect naar de homepagina-->
         <RouterLink :to="`/`"> <!-- Als je op de submit knop drukt, ga je weer naar de overview pagina-->
             <button @click="emitEvent">{{ props.product?.id ? 'Change' : 'Add'}}</button> <!--Als product bestaand Id heeft, dan komt er Change te staan, anders Add-->
         </RouterLink>
